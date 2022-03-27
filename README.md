@@ -10,7 +10,9 @@ Have fun with this, instead of someone else's unpatched boxes plz.
 Clone repo, build using Gradle, run `LolServer`. Default port is 8000. Open [http://localhost:8000/](http://localhost:8000), fill in what you want to send, click Send.
 
 ## Thanks to
-* [This blog post](https://nakedsecurity.sophos.com/2021/12/13/log4shell-explained-how-it-works-why-you-need-to-know-and-how-to-fix-it/) from Naked Security for steps for setting up a vulnerable server
+* [This blog post](https://nakedsecurity.sophos.com/2021/12/13/log4shell-explained-how-it-works-why-you-need-to-know-and-how-to-fix-it/) from Naked Security 
+  * for steps for setting up a vulnerable server
+  * for explaining the vulnerability
 
 ## // TODO all points in this list
 * Make the rest of the toolchain needed for 100% pwnage
