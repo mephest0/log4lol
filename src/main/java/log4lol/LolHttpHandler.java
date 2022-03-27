@@ -13,6 +13,21 @@ import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 
 public class LolHttpHandler implements HttpHandler {
+    static final String HTML_PREFIX = """
+            <html>
+                <head>
+                    <title>
+                        Logging utility
+                    </title>
+                </head>
+                <body>
+            """;
+
+    static final String HTML_POSTFIX = """
+                </body>
+            </html>
+            """;
+
     static Logger logger = LogManager.getLogger(LolHttpHandler.class);
 
     @Override
@@ -30,7 +45,7 @@ public class LolHttpHandler implements HttpHandler {
             response = "Only GET and POST plz";
         }
 
-        String htmlResponse = "<html><head><title>Logging utility</title></head><body>" + response + "</body></html>";
+        String htmlResponse = HTML_PREFIX + response + HTML_POSTFIX;
 
         OutputStream outputStream = exchange.getResponseBody();
         exchange.sendResponseHeaders(200, htmlResponse.length());
