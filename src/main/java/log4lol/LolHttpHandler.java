@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 
 public class LolHttpHandler implements HttpHandler {
@@ -70,11 +71,14 @@ public class LolHttpHandler implements HttpHandler {
         String requestBody = new String(data, StandardCharsets.UTF_8);
         System.out.println("request body: " + requestBody);
 
+        String cleaned = URLDecoder.decode(requestBody.replace("text=", ""), StandardCharsets.UTF_8);
+        System.out.println("cleaned: " + cleaned);
+
         // Using log level error because it requires no setup
-        logger.error(requestBody);
+        logger.error(cleaned);
 
         sb.append("<br />");
-        sb.append("<tt>").append(requestBody).append("</tt>");
+        sb.append("<tt>").append(cleaned).append("</tt>");
 
         return sb.toString();
     }
