@@ -20,7 +20,7 @@ public class LolHttpHandler implements HttpHandler {
         String response;
         String requestMethod = exchange.getRequestMethod();
 
-        logger.error("requestMethod = " + requestMethod);
+        System.out.println("requestMethod = " + requestMethod);
 
         if (requestMethod.equals("GET")) {
             response = this.handleGetRequest();
@@ -80,6 +80,7 @@ public class LolHttpHandler implements HttpHandler {
         sb.append("<br />");
         sb.append("<tt>").append(cleaned).append("</tt>");
 
+        System.out.println("Request handled");
         return sb.toString();
     }
 }
