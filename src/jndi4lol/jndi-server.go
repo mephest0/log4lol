@@ -12,13 +12,15 @@ const (
 
 func main() {
 	l, err := net.Listen("tcp", "localhost:8001")
+	i := 0
 
 	check(err)
 
 	defer l.Close()
 
 	for {
-		fmt.Println("Listening...")
+		fmt.Println("Listening...", i)
+		i++
 
 		conn, err := l.Accept()
 
