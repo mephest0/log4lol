@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"net"
 	"os"
 )
@@ -43,7 +44,6 @@ func getPayload() string {
 	check(err)
 
 	var contents = string(dat)
-	fmt.Println(contents)
 
 	return contents
 }
@@ -51,6 +51,30 @@ func getPayload() string {
 func handleRequest(conn net.Conn) {
 	fmt.Println("Got request, writing response")
 
+	if len(readRequest(conn)) > 15 {
+		// Payload is most likely HTTP
+	} else {
+		// Payload is most likely JNDI
+	}
+
 	conn.Write([]byte(getPayload()))
 	conn.Close()
+
+	fmt.Println("Connection closed")
+}
+
+func readRequest(conn net.Conn) string {
+	tmp := make([]byte, 512)
+
+	_, err := conn.Read(tmp)
+	if err != nil && err != io.EOF {
+		fmt.Println("!! Read error:", err)
+	}
+	asText := string(tmp)
+
+	fmt.Println("Total size:", len(tmp))
+	fmt.Println("Buffer", tmp)
+	fmt.Println("Request", asText)
+
+	return asText
 }
