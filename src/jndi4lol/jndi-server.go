@@ -26,7 +26,7 @@ func main() {
 
 		check(err)
 
-		go handleRequest(conn)
+		handleRequest(conn)
 	}
 
 }
